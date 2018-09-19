@@ -1,0 +1,29 @@
+{{- if .Values.ingress.enabled }}
+{{- range .Values.ingress.hosts.api }}
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: {{ template "moderngreek.fullname" $ }}-api
+  labels:
+    app: {{ template "moderngreek.name" $ }}-api
+    chart: {{ $.Chart.Name }}-{{ $.Chart.Version }}
+    release: {{ $.Release.Name }}
+    heritage: {{ $.Release.Service }}
+spec:
+  rules:
+    - host: {{ .name }}
+      http:
+        paths:
+          - path: {{ .path }}
+            backend:
+              serviceName: {{ template "moderngreek.fullname" $ }}-api
+              servicePort: http
+  {{- if (and $.Values.ingress.enabled $.Values.ingress.ssl) }}
+  tls:
+    - secretName: letsencrypt-staging
+      hosts:
+        - {{ .name }}
+  {{- end }}
+---
+{{- end }}
+{{- end }}

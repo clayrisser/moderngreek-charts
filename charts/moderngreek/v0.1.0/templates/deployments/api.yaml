@@ -1,0 +1,26 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: {{ template "moderngreek.fullname" . }}-api
+  labels:
+    app: {{ template "moderngreek.name" . }}-api
+    chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  template:
+    metadata:
+      labels:
+        app: {{ template "moderngreek.name" . }}-api
+        release: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: {{ template "moderngreek.fullname" . }}-api
+          image: {{ .Values.images.api.repository }}:{{ .Values.images.api.tag }}
+          imagePullPolicy: {{ .Values.images.api.pullPolicy }}
+          ports:
+            - name: container
+              containerPort: 1337
+          env:
+            - name: MONGO_PASSWORD
+              value: {{ .Values.config.mongoPassword }}
