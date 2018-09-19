@@ -1,0 +1,23 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: {{ template "moderngreek.fullname" . }}-dashboard
+  labels:
+    app: {{ template "moderngreek.name" . }}-dashboard
+    chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  template:
+    metadata:
+      labels:
+        app: {{ template "moderngreek.name" . }}-dashboard
+        release: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: {{ template "moderngreek.fullname" . }}-dashboard
+          image: {{ .Values.images.dashboard.repository }}:{{ .Values.images.dashboard.tag }}
+          imagePullPolicy: {{ .Values.images.dashboard.pullPolicy }}
+          ports:
+            - name: container
+              containerPort: 9002

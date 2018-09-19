@@ -10,17 +10,15 @@ spec:
     name: {{ .Values.issuer.name }}
     kind: {{ .Values.issuer.kind }}
   commonName: '{{ (index .Values.ingress.hosts.api 0).name }}'
-  # dnsNames:
-  #   - '{{ (index .Values.ingress.hosts.nursesPanel 0).name }}'
-  #   - '{{ (index .Values.ingress.hosts.hospitalPanel 0).name }}'
-  #   - '{{ (index .Values.ingress.hosts.superAdmin 0).name }}'
+  dnsNames:
+    - '{{ (index .Values.ingress.hosts.dashboard 0).name }}'
+    - '{{ (index .Values.ingress.hosts.store 0).name }}'
   acme:
     config:
     - http01:
         ingressClass: nginx
       domains:
         - '{{ (index .Values.ingress.hosts.api 0).name }}'
-        # - '{{ (index .Values.ingress.hosts.nursesPanel 0).name }}'
-        # - '{{ (index .Values.ingress.hosts.hospitalPanel 0).name }}'
-        # - '{{ (index .Values.ingress.hosts.superAdmin 0).name }}'
+        - '{{ (index .Values.ingress.hosts.dashboard 0).name }}'
+        - '{{ (index .Values.ingress.hosts.store 0).name }}'
 {{- end }}

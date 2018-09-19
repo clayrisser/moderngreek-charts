@@ -1,0 +1,23 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: {{ template "moderngreek.fullname" . }}-store
+  labels:
+    app: {{ template "moderngreek.name" . }}-store
+    chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  template:
+    metadata:
+      labels:
+        app: {{ template "moderngreek.name" . }}-store
+        release: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: {{ template "moderngreek.fullname" . }}-store
+          image: {{ .Values.images.store.repository }}:{{ .Values.images.store.tag }}
+          imagePullPolicy: {{ .Values.images.store.pullPolicy }}
+          ports:
+            - name: container
+              containerPort: 9001

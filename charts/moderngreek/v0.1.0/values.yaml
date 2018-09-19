@@ -3,6 +3,14 @@ images:
     repository: moderngreekus/rest-api
     tag: latest
     pullPolicy: Always
+  dashboard:
+    repository: moderngreekus/dashboard
+    tag: latest
+    pullPolicy: Always
+  store:
+    repository: moderngreekus/store
+    tag: latest
+    pullPolicy: Always
 
 issuer:
   name: letsencrypt-staging
@@ -15,12 +23,22 @@ ingress:
     api:
       - name: ''
         path: /
+    dashboard:
+      - name: ''
+        path: /
+    store:
+      - name: ''
+        path: /store
 
 service:
   type: NodePort
   externalTrafficPolicy: Cluster
   nodePorts:
     api:
+      http: ''
+    dashboard:
+      http: ''
+    store:
       http: ''
 
 persistence:
