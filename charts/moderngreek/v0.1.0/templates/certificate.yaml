@@ -13,6 +13,7 @@ spec:
   dnsNames:
     - '{{ (index .Values.ingress.hosts.dashboard 0).name }}'
     - '{{ (index .Values.ingress.hosts.store 0).name }}'
+    - 'www.{{ (index .Values.ingress.hosts.store 0).name }}'
   acme:
     config:
     - http01:
@@ -21,4 +22,5 @@ spec:
         - '{{ (index .Values.ingress.hosts.api 0).name }}'
         - '{{ (index .Values.ingress.hosts.dashboard 0).name }}'
         - '{{ (index .Values.ingress.hosts.store 0).name }}'
+        - 'www.{{ (index .Values.ingress.hosts.store 0).name }}'
 {{- end }}

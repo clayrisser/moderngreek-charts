@@ -18,6 +18,17 @@ spec:
             backend:
               serviceName: {{ template "moderngreek.fullname" $ }}-store
               servicePort: http
+          - path: /
+            backend:
+              serviceName: {{ template "moderngreek.fullname" $ }}-public
+              servicePort: 80
+    - host: www.{{ .name }}
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: {{ template "moderngreek.fullname" $ }}-public
+              servicePort: 80
   {{- if (and $.Values.ingress.enabled $.Values.ingress.ssl) }}
   tls:
     - secretName: letsencrypt-staging
