@@ -25,28 +25,28 @@ questions:
 
 # Config
   - variable: config.mongoPassword
-    default: true
+    default: ''
     description: 'mongo password'
     required: true
     type: password
     label: 'mongo password'
     group: Config
   - variable: config.apnKeyId
-    default: true
+    default: ''
     description: 'apn key id'
     required: true
     type: password
     label: 'apn key id'
     group: Config
   - variable: config.apnTeamId
-    default: true
+    default: ''
     description: 'apn team id'
     required: true
     type: string
     label: 'apn team id'
     group: Config
   - variable: config.apnPushKey
-    default: true
+    default: ''
     description: 'apn push key'
     required: true
     type: password
