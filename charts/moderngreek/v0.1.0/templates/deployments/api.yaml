@@ -29,9 +29,9 @@ spec:
             - name: APN_TEAM_ID
               value: {{ .Values.config.apnTeamId }}
           volumeMounts:
-            - name: data
-              mountPath: /data
+            - name: certs
+              mountPath: /data/certs
       volumes:
-        - name: data
+        - name: certs
           configMap:
-            name: {{ template "moderngreek.fullname" . }}
+            name: {{ template "moderngreek.fullname" . }}-certs
