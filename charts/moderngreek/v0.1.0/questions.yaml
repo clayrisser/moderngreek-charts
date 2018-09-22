@@ -45,6 +45,13 @@ questions:
     type: string
     label: 'apn team id'
     group: Config
+  - variable: config.apnPushKey
+    default: true
+    description: 'apn push key'
+    required: true
+    type: password
+    label: 'apn push key'
+    group: Config
 
 # Services and Load Balancing
   - variable: ingress.enabled

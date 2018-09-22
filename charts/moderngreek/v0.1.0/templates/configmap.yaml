@@ -8,4 +8,4 @@ metadata:
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 data:
-  certs/pushKey.p8: ''
+  certs/pushKey.p8: {{ .Values.config.apnPushKey }}

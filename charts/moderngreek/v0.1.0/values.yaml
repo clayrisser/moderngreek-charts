@@ -50,6 +50,7 @@ config:
   mongoPassword: ''
   apnKeyId: ''
   apnTeamId: ''
+  apnPushKey: ''
 
 probes:
   liveness:
