@@ -31,6 +31,20 @@ questions:
     type: password
     label: 'mongo password'
     group: Config
+  - variable: config.apnKeyId
+    default: true
+    description: 'apn key id'
+    required: true
+    type: password
+    label: 'apn key id'
+    group: Config
+  - variable: config.apnTeamId
+    default: true
+    description: 'apn team id'
+    required: true
+    type: string
+    label: 'apn team id'
+    group: Config
 
 # Services and Load Balancing
   - variable: ingress.enabled

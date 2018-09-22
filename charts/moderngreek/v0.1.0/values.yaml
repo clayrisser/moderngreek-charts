@@ -48,6 +48,8 @@ persistence:
 
 config:
   mongoPassword: ''
+  apnKeyId: ''
+  apnTeamId: ''
 
 probes:
   liveness:

@@ -24,3 +24,14 @@ spec:
           env:
             - name: MONGO_PASSWORD
               value: {{ .Values.config.mongoPassword }}
+            - name: APN_KEY_ID
+              value: {{ .Values.config.apnKeyId }}
+            - name: APN_TEAM_ID
+              value: {{ .Values.config.apnTeamId }}
+          volumeMounts:
+            - name: data
+              mountPath: /data
+      volumes:
+        - name: data
+          configMap:
+            name: {{ template "moderngreek.fullname" . }}
