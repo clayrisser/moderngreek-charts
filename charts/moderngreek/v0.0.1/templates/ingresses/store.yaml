@@ -1,11 +1,16 @@
 {{- if .Values.ingress.enabled }}
-{{- range .Values.ingress.hosts.api }}
+{{- range .Values.ingress.hosts.store }}
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: {{ template "moderngreek.fullname" $ }}-api
+  name: {{ template "moderngreek.fullname" $ }}-store
+  annotations:
+  {{- if (and $.Values.ingress.enabled $.Values.ingress.tls) }}
+    certmanager.k8s.io/cluster-issuer: {{ $.Values.ingress.issuer.name }}
+    kubernetes.io/tls-acme: 'true'
+  {{- end }}
   labels:
-    app: {{ template "moderngreek.name" $ }}-api
+    app: {{ template "moderngreek.name" $ }}-store
     chart: {{ $.Chart.Name }}-{{ $.Chart.Version }}
     release: {{ $.Release.Name }}
     heritage: {{ $.Release.Service }}
@@ -16,9 +21,9 @@ spec:
         paths:
           - path: {{ .path }}
             backend:
-              serviceName: {{ template "moderngreek.fullname" $ }}-api
+              serviceName: {{ template "moderngreek.fullname" $ }}-store
               servicePort: http
-  {{- if (and $.Values.ingress.enabled $.Values.ingress.ssl) }}
+  {{- if (and $.Values.ingress.enabled $.Values.ingress.tls) }}
   tls:
     - secretName: letsencrypt-staging
       hosts:

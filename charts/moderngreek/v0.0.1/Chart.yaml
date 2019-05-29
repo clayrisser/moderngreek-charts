@@ -1,13 +1,16 @@
 name: moderngreek
 home: https://moderngreek.us
 icon: https://moderngreek.us/img/modern-greek-ghetto-logo.png
-version: 0.2.0
-appVersion: 0.8.5
+version: 0.0.1
+appVersion: latest
 description: 'moderngreek stack'
 keywords:
+  - moderngreek
   - greek
   - ecommerce
   - tshirt
+  - shirt
+  - swag
   - panel
   - dashboard
 sources:

@@ -1,0 +1,83 @@
+images:
+  api:
+    repository: moderngreekus/rest-api
+    tag: latest
+    pullPolicy: IfNotPresent
+  dashboard:
+    repository: moderngreekus/dashboard
+    tag: latest
+    pullPolicy: IfNotPresent
+  store:
+    repository: moderngreekus/store
+    tag: latest
+    pullPolicy: IfNotPresent
+  mongo:
+    repository: mongo
+    tag: latest
+    pullPolicy: IfNotPresent
+
+config:
+  apnKeyId: ''
+  apnTeamId: ''
+  mongo:
+    database: moderngreek
+    host: ''
+    internal: true
+    password: ''
+    port: 27017
+    sessionDatabase: session
+    sessionUrl: ''
+    url: ''
+    username: ''
+  dashboardBaseUrl: ''
+  storeBaseUrl: ''
+  gcmId: ''
+
+service:
+  type: NodePort
+  externalTrafficPolicy: Cluster
+  nodePorts:
+    api:
+      http: ''
+    dashboard:
+      http: ''
+    store:
+      http: ''
+
+ingress:
+  enabled: false
+  tls: false
+  issuer:
+    name: letsencrypt-staging
+  hosts:
+    api:
+      - name: ''
+        path: /
+    dashboard:
+      - name: ''
+        path: /
+    store:
+      - name: ''
+        path: /
+
+persistence:
+  accessMode: ReadWriteOnce
+  enabled: false
+  existingClaim: ''
+  size: 10Gi
+  storageClass: ''
+  volbackBackup: false
+
+probes:
+  liveness:
+    initialDelaySeconds: 120
+    periodSeconds: 10
+    timeoutSeconds: 5
+    failureThreshold: 6
+    successThreshold: 1
+  readiness:
+    initialDelaySeconds: 30
+    periodSeconds: 10
+    timeoutSeconds: 5
+    failureThreshold: 6
+    successThreshold: 1

@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "moderngreek.fullname" . }}
+  labels:
+    app: {{ template "moderngreek.name" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+data:
+  apn_key_id: {{ .Values.config.apnKeyId | quote }}
+  apn_team_id: {{ .Values.config.apnTeamId | quote }}
+  dashboard_base_url: {{ template "moderngreek.dashboard_base_url" . }}
+  gcm_id: {{ .Values.config.gcmId | quote }}
+  store_base_url: {{ template "moderngreek.store_base_url" . }}
+  {{- $mongo := .Values.config.mongo }}
+  {{- if $mongo.internal }}
+  mongo_host: {{ template "moderngreek.fullname" . }}-mongo
+  {{- else }}
+  mongo_host: {{ $mongo.host | quote }}
+  {{- end }}
+  mongo_database: {{ $mongo.database | quote }}
+  mongo_port: {{ $mongo.port | quote }}
+  mongo_session_database: {{ $mongo.sessionDatabase | quote }}
+  mongo_username: {{ $mongo.username | quote }}
