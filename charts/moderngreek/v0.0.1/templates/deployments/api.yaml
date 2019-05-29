@@ -25,21 +25,78 @@ spec:
             - name: certs
               mountPath: /data/certs
           env:
+            - name: NODE_ENV
+              value: production
             - name: APN_KEY_ID
               valueFrom:
                 configMapKeyRef:
-                  name: {{ template "keycloak.fullname" . }}
+                  name: {{ template "moderngreek.fullname" . }}
                   key: apn_key_id
             - name: APN_TEAM_ID
               valueFrom:
                 configMapKeyRef:
-                  name: {{ template "keycloak.fullname" . }}
+                  name: {{ template "moderngreek.fullname" . }}
                   key: apn_team_id
-            - name: KEYCLOAK_PASSWORD
+            - name: APN_TEAM_ID
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ template "moderngreek.fullname" . }}
+                  key: apn_team_id
+            - name: DASHBOARD_BASE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ template "moderngreek.fullname" . }}
+                  key: dashboard_base_url
+            - name: GCM_ID
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ template "moderngreek.fullname" . }}
+                  key: gcm_id
+            - name: MONGO_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ template "moderngreek.fullname" . }}
+                  key: mongo_host
+            - name: MONGO_DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ template "moderngreek.fullname" . }}
+                  key: mongo_database
+            - name: MONGO_SESSION_DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ template "moderngreek.fullname" . }}
+                  key: mongo_session_database
+            - name: MONGO_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ template "moderngreek.fullname" . }}
+                  key: mongo_port
+            - name: MONGO_USERNAME
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ template "moderngreek.fullname" . }}
+                  key: mongo_username
+            - name: MONGO_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ template "moderngreek.fullname" . }}
+                  key: mongo_port
+            - name: MONGO_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: {{ template "keycloak.fullname" . }}
-                  key: password
+                  name: {{ template "moderngreek.fullname" . }}
+                  key: mongo_password
+            - name: MONGO_URL
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "moderngreek.fullname" . }}
+                  key: mongo_url
+            - name: MONGO_SESSION_URL
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "moderngreek.fullname" . }}
+                  key: mongo_session_url
           livenessProbe:
             httpGet:
               path: /

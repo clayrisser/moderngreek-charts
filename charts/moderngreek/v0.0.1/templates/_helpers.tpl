@@ -1,4 +1,6 @@
 {{/* vim: set filetype=mustache: */}}
+{{- $mongo := .Values.config.mongo }}
+
 {{/*
 Expand the name of the chart.
 */}}
@@ -56,15 +58,20 @@ Calculate store_base_url
 Calculate mongo_url
 */}}
 {{- define "moderngreek.mongo_url" }}
-{{- $mongo := .Values.config.mongo }}
-{{- if $mongo.internal }}
-{{- printf "mongodb://%s-mongo:27017/%s" (include "moderngreek.fullname" . ) $mongo.database }}
-{{- else }}
-{{- if $mongo.url }}
+{{- if (and $mongo.internal $mongo.url) }}
 {{- printf $mongo.url }}
 {{- else }}
-{{- $credentials := (empty $mongo.username | ternary "" (printf "%s:%s" $mongo.username $mongo.password)) }}
-{{- printf "mongodb://%s@%s:%s/%s" $credentials $mongo.host $mongo.port $mongo.database }}
+{{- printf "" }}
 {{- end }}
+{{- end }}
+
+{{/*
+Calculate mongo_session_url
+*/}}
+{{- define "moderngreek.mongo_session_url" }}
+{{- if (and $mongo.internal $mongo.sessionUrl) }}
+{{- printf $mongo.sessionUrl }}
+{{- else }}
+{{- printf "" }}
 {{- end }}
 {{- end }}
