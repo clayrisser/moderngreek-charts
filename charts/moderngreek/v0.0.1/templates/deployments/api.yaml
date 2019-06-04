@@ -81,7 +81,7 @@ spec:
                   key: mongo_port
             - name: MONGO_URL
               valueFrom:
-                configMapKeyRef:
+                secretKeyRef:
                   name: {{ template "moderngreek.fullname" . }}
                   key: mongo_url
             - name: MONGO_PASSWORD
