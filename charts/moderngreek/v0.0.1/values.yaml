@@ -19,6 +19,9 @@ images:
 config:
   apnKeyId: ''
   apnTeamId: ''
+  dashboardBaseUrl: ''
+  gcmId: ''
+  storeBaseUrl: ''
   mongo:
     database: moderngreek
     host: ''
@@ -29,9 +32,6 @@ config:
     sessionUrl: ''
     url: ''
     username: ''
-  dashboardBaseUrl: ''
-  storeBaseUrl: ''
-  gcmId: ''
 
 service:
   type: NodePort
@@ -47,6 +47,7 @@ service:
 ingress:
   enabled: false
   tls: false
+  certificate: ''
   issuer:
     name: letsencrypt-staging
   hosts:

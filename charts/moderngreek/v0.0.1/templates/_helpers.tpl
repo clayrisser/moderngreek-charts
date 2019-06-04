@@ -19,6 +19,16 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this
 {{- end }}
 
 {{/*
+Calculate certificate
+*/}}
+{{- define "teleport.certificate" }}
+{{- if (not (empty .Values.ingress.certificate)) }}
+{{- else }}
+{{- printf "%s-letsencrypt" (include "teleport.fullname" .) }}
+{{- end }}
+{{- end }}
+
+{{/*
 Calculate dashboard_base_url
 */}}
 {{- define "moderngreek.dashboard_base_url" }}
