@@ -14,6 +14,8 @@ spec:
         app: {{ template "moderngreek.name" . }}-store
         release: {{ .Release.Name }}
     spec:
+      imagePullSecrets:
+        - name: dockerhub
       containers:
         - name: {{ template "moderngreek.fullname" . }}-store
           image: {{ .Values.images.store.repository }}:{{ .Values.images.store.tag }}
