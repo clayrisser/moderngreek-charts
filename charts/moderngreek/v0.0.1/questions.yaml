@@ -120,13 +120,6 @@ questions:
     required: true
     label: database
     group: 'Mongo Config'
-  - variable: config.mongo.sessionDatabase
-    default: session
-    description: ''
-    type: string
-    required: false
-    label: 'mongo session database'
-    group: Config
   - variable: config.mongo.username
     default: ''
     description: ''
@@ -161,13 +154,6 @@ questions:
     label: url
     show_if: config.mongo.internal=false
     group: 'Mongo Config'
-  - variable: config.mongo.sessionUrl
-    default: ''
-    description: ''
-    type: password
-    required: false
-    label: 'session url'
-    group: Config
 
 # Persistence
   - variable: persistence.enabled

@@ -28,8 +28,6 @@ config:
     internal: true
     password: ''
     port: 27017
-    sessionDatabase: session
-    sessionUrl: ''
     url: ''
     username: ''
 

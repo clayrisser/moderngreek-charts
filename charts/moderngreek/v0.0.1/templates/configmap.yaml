@@ -21,7 +21,4 @@ data:
   {{- end }}
   mongo_database: {{ $mongo.database | quote }}
   mongo_port: {{ $mongo.port | quote }}
-  mongo_session_database: {{ $mongo.sessionDatabase | quote }}
-  mongo_session_url: {{ template "moderngreek.mongo_session_url" . }}
-  mongo_url: {{ template "moderngreek.mongo_url" . }}
   mongo_username: {{ $mongo.username | quote }}

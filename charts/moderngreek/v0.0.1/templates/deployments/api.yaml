@@ -64,11 +64,6 @@ spec:
                 configMapKeyRef:
                   name: {{ template "moderngreek.fullname" . }}
                   key: mongo_database
-            - name: MONGO_SESSION_DATABASE
-              valueFrom:
-                configMapKeyRef:
-                  name: {{ template "moderngreek.fullname" . }}
-                  key: mongo_session_database
             - name: MONGO_PORT
               valueFrom:
                 configMapKeyRef:
@@ -94,11 +89,6 @@ spec:
                 secretKeyRef:
                   name: {{ template "moderngreek.fullname" . }}
                   key: mongo_url
-            - name: MONGO_SESSION_URL
-              valueFrom:
-                secretKeyRef:
-                  name: {{ template "moderngreek.fullname" . }}
-                  key: mongo_session_url
           livenessProbe:
             httpGet:
               path: /
