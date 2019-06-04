@@ -68,10 +68,15 @@ Calculate mongo_url
 */}}
 {{- define "moderngreek.mongo_url" }}
 {{- $mongo := .Values.config.mongo }}
-{{- if (and $mongo.internal $mongo.url) }}
+{{- if $mongo.internal }}
+{{- printf "mongodb://%s-mongo:27017/%s" (include "moderngreek.fullname" . ) $mongo.database }}
+{{- else }}
+{{- if $mongo.url }}
 {{- printf $mongo.url }}
 {{- else }}
-{{- printf "" }}
+{{- $credentials := (empty $mongo.username | ternary "" (printf "%s:%s" $mongo.username $mongo.password)) }}
+{{- printf "mongodb://%s@%s:%s/%s" $credentials $mongo.host $mongo.port $mongo.database }}
+{{- end }}
 {{- end }}
 {{- end }}
 
