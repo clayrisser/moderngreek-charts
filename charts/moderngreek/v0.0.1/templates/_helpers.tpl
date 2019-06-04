@@ -1,5 +1,4 @@
 {{/* vim: set filetype=mustache: */}}
-{{- $mongo := .Values.config.mongo }}
 
 {{/*
 Expand the name of the chart.
@@ -68,6 +67,7 @@ Calculate store_base_url
 Calculate mongo_url
 */}}
 {{- define "moderngreek.mongo_url" }}
+{{- $mongo := .Values.config.mongo }}
 {{- if (and $mongo.internal $mongo.url) }}
 {{- printf $mongo.url }}
 {{- else }}
@@ -79,6 +79,7 @@ Calculate mongo_url
 Calculate mongo_session_url
 */}}
 {{- define "moderngreek.mongo_session_url" }}
+{{- $mongo := .Values.config.mongo }}
 {{- if (and $mongo.internal $mongo.sessionUrl) }}
 {{- printf $mongo.sessionUrl }}
 {{- else }}
