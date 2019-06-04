@@ -54,7 +54,7 @@ Calculate store_base_url
 {{- printf .Values.config.store_base_url }}
 {{- else }}
 {{- if .Values.ingress.enabled }}
-{{- $host := (index .Values.ingress.hosts.store 0)) }}
+{{- $host := (index .Values.ingress.hosts.store 0) }}
 {{- $protocol := (.Values.ingress.tls | ternary "https" "http") }}
 {{- $path := (eq $host.path "/" | ternary "" $host.path) }}
 {{- printf "%s://%s%s" $protocol $host.name $path }}
