@@ -75,6 +75,13 @@ questions:
     required: true
     label: 'apn team id'
     group: Config
+  - variable: config.apnPushKey
+    default: ''
+    description: ''
+    type: password
+    required: true
+    label: 'apn push key'
+    group: Config
   - variable: config.dashboardBaseUrl
     default: ''
     description: ''

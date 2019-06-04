@@ -18,6 +18,7 @@ images:
 
 config:
   apnKeyId: ''
+  apnPushKey: ''
   apnTeamId: ''
   dashboardBaseUrl: ''
   gcmId: ''
