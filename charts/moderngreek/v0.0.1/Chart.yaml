@@ -1,7 +1,7 @@
 name: moderngreek
 home: https://moderngreek.us
 icon: https://res.cloudinary.com/zacharycook/image/upload/v1514490444/modern-greek-ghetto-logo_scoenn.png
-version: 0.0.1
+version: 0.0.2
 appVersion: latest
 description: 'moderngreek stack'
 keywords:
