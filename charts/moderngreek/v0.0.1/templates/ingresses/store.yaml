@@ -27,10 +27,20 @@ spec:
             backend:
               serviceName: {{ template "moderngreek.fullname" . }}-store
               servicePort: http
+    - host: 'www.{{ $host.name }}'
+      http:
+        paths:
+          - path: {{ $host.path }}
+            backend:
+              serviceName: {{ template "moderngreek.fullname" . }}-store
+              servicePort: http
   {{- if (and .Values.ingress.enabled .Values.ingress.tls) }}
   tls:
     - secretName: {{ template "moderngreek.certificate" . }}-store
       hosts:
         - {{ $host.name }}
+    - secretName: {{ template "moderngreek.certificate" . }}-store-www
+      hosts:
+        - 'www.{{ $host.name }}'
   {{- end }}
 {{- end }}
