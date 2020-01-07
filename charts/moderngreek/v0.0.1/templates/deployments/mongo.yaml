@@ -9,6 +9,10 @@ metadata:
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
+  selector:
+    matchLabels:
+      app: {{ template "moderngreek.name" . }}-mongo
+      release: {{ .Release.Name }}
   template:
     metadata:
       labels:
