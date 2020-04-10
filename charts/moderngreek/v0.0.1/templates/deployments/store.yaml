@@ -12,6 +12,8 @@ spec:
     matchLabels:
       app: {{ template "moderngreek.name" . }}-store
       release: {{ .Release.Name }}
+  strategy:
+    type: {{ .Values.config.updateStrategy }}
   template:
     metadata:
       labels:
@@ -23,7 +25,7 @@ spec:
       containers:
         - name: {{ template "moderngreek.fullname" . }}-store
           image: {{ .Values.images.store.repository }}:{{ .Values.images.store.tag }}
-          imagePullPolicy: {{ .Values.images.store.pullPolicy }}
+          imagePullPolicy: {{ .Values.config.imagePullPolicy }}
           ports:
             - name: container
               containerPort: 9001

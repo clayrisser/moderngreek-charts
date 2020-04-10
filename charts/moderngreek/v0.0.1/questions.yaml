@@ -2,65 +2,39 @@ categories:
   - Server
 questions:
 
-# Images
-  - variable: images.api.repository
-    default: moderngreekus/rest-api
-    description: ''
-    type: string
-    required: true
-    label: 'api repository'
-    group: Images
-  - variable: images.api.tag
-    default: latest
-    description: ''
-    type: string
-    required: true
-    label: 'api tag'
-    group: Images
-  - variable: images.dashboard.repository
-    default: moderngreekus/dashboard
-    description: ''
-    type: string
-    required: true
-    label: 'dashboard repository'
-    group: Images
-  - variable: images.dashboard.tag
-    default: latest
-    description: ''
-    type: string
-    required: true
-    label: 'dashboard tag'
-    group: Images
-  - variable: images.store.repository
-    default: moderngreekus/store
-    description: ''
-    type: string
-    required: true
-    label: 'store repository'
-    group: Images
-  - variable: images.store.tag
-    default: latest
-    description: ''
-    type: string
-    required: true
-    label: 'store tag'
-    group: Images
-  - variable: images.mongo.repository
-    default: mongo
-    description: ''
-    type: string
-    required: true
-    label: 'mongo repository'
-    group: Images
-  - variable: images.mongo.tag
-    default: latest
-    description: ''
-    type: string
-    required: true
-    label: 'mongo tag'
-    group: Images
-
 # Config
+  - variable: config.clusterProvider
+    default: infrastructure
+    description: ''
+    type: enum
+    options:
+      - infrastructure
+      - eks
+      - aks
+      - gke
+    required: true
+    label: 'cluster provider'
+    group: Config
+  - variable: config.imagePullPolicy
+    default: IfNotPresent
+    description: ''
+    type: enum
+    options:
+      - IfNotPresent
+      - Always
+    required: true
+    label: 'pull policy'
+    group: Config
+  - variable: config.updateStrategy
+    default: RollingUpdate
+    description: ''
+    type: enum
+    options:
+      - RollingUpdate
+      - Recreate
+    required: true
+    label: 'update strategy'
+    group: Config
   - variable: config.apnKeyId
     default: ''
     description: ''
@@ -307,3 +281,61 @@ questions:
         max: 32767
         show_if: ingress.enabled=false
         label: 'store http port'
+
+# Images
+  - variable: images.api.repository
+    default: moderngreekus/rest-api
+    description: ''
+    type: string
+    required: true
+    label: 'api repository'
+    group: Images
+  - variable: images.api.tag
+    default: latest
+    description: ''
+    type: string
+    required: true
+    label: 'api tag'
+    group: Images
+  - variable: images.dashboard.repository
+    default: moderngreekus/dashboard
+    description: ''
+    type: string
+    required: true
+    label: 'dashboard repository'
+    group: Images
+  - variable: images.dashboard.tag
+    default: latest
+    description: ''
+    type: string
+    required: true
+    label: 'dashboard tag'
+    group: Images
+  - variable: images.store.repository
+    default: moderngreekus/store
+    description: ''
+    type: string
+    required: true
+    label: 'store repository'
+    group: Images
+  - variable: images.store.tag
+    default: latest
+    description: ''
+    type: string
+    required: true
+    label: 'store tag'
+    group: Images
+  - variable: images.mongo.repository
+    default: mongo
+    description: ''
+    type: string
+    required: true
+    label: 'mongo repository'
+    group: Images
+  - variable: images.mongo.tag
+    default: latest
+    description: ''
+    type: string
+    required: true
+    label: 'mongo tag'
+    group: Images

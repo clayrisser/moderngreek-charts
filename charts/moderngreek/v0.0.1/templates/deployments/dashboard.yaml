@@ -12,6 +12,8 @@ spec:
     matchLabels:
       app: {{ template "moderngreek.name" . }}-dashboard
       release: {{ .Release.Name }}
+  strategy:
+    type: {{ .Values.config.updateStrategy }}
   template:
     metadata:
       labels:
@@ -23,7 +25,7 @@ spec:
       containers:
         - name: {{ template "moderngreek.fullname" . }}-dashboard
           image: {{ .Values.images.dashboard.repository }}:{{ .Values.images.dashboard.tag }}
-          imagePullPolicy: {{ .Values.images.dashboard.pullPolicy }}
+          imagePullPolicy: {{ .Values.config.imagePullPolicy }}
           ports:
             - name: container
               containerPort: 9002

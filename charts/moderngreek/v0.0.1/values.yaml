@@ -2,21 +2,20 @@ images:
   api:
     repository: moderngreekus/rest-api
     tag: latest
-    pullPolicy: Always
   dashboard:
     repository: moderngreekus/dashboard
     tag: latest
-    pullPolicy: Always
   store:
     repository: moderngreekus/store
     tag: latest
-    pullPolicy: Always
   mongo:
     repository: mongo
     tag: latest
-    pullPolicy: IfNotPresent
 
 config:
+  clusterProvider: infrastructure
+  imagePullPolicy: IfNotPresent
+  updateStrategy: RollingUpdate
   apnKeyId: ''
   apnPushKey: ''
   apnTeamId: ''

@@ -13,6 +13,8 @@ spec:
     matchLabels:
       app: {{ template "moderngreek.name" . }}-mongo
       release: {{ .Release.Name }}
+  strategy:
+    type: {{ .Values.config.updateStrategy }}
   template:
     metadata:
       labels:
@@ -22,7 +24,7 @@ spec:
       containers:
         - name: {{ template "moderngreek.fullname" . }}-mongo
           image: {{ .Values.images.mongo.repository }}:{{ .Values.images.mongo.tag }}
-          imagePullPolicy: {{ .Values.images.mongo.pullPolicy }}
+          imagePullPolicy: {{ .Values.config.imagePullPolicy }}
           ports:
             - name: container
               containerPort: 27017
